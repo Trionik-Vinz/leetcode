@@ -1,20 +1,16 @@
 class Solution:
     def removeDuplicates(self, nums: list[int]) -> int:
         n = len(nums)
-        freq_map = {}
+        if n == 0: return 0  # Handle empty list
+        if n == 1: return 1
 
-        # Populate the frequency map with 0 as a placeholder
-        for i in range(0, n):
-            freq_map[nums[i]] = 0
-
-        j = 0
-        # Overwrite the original list with unique keys from the map
-        for k in freq_map:
-            nums[j] = k
-            j += 1
-
-        # Now return works because it is inside the function
-        return j
-      
-
+        i = 0
+        j = i + 1
         
+        while j < n:
+            if nums[j] != nums[i]:
+                i += 1  # Increment i to the next slot
+                nums[i] = nums[j]  # Move the unique element up
+            j += 1  # Always increment j to scan the list
+            
+        return i + 1
