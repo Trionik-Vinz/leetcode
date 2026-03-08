@@ -1,15 +1,35 @@
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
-        low, high = 0, len(nums) - 1
-        
-        while low <= high:
-            mid = (low + high) // 2
+        if target > nums[-1]:
+            return len(nums)
+        if target < nums[0]:
+            return 0
+
+        left, right = 0, len(nums) - 1
+        final_idx = -1
+
+        l = 0
+        r = 2
+        m = 3
+        f = 3
+        [1,2,3,4,5,10]
+        while left <= right:
+            mid = (left + right) // 2
+
             if nums[mid] == target:
                 return mid
-            if nums[mid] < target:
-                low = mid + 1
+            
+            elif nums[mid] > target:
+                right = mid - 1
+                final_idx = mid
+                
             else:
-                high = mid - 1
-        return low
+                left = mid + 1
+                final_idx = mid + 1
+            
+            #if right - left == 1:
+            #    return final_idx
+
+        return left
             
         
